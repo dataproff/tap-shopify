@@ -75,6 +75,9 @@ class tap_shopifyStream(RESTStream):
             return params
         elif start_date:
             params["created_at_min"] = start_date
+
+        if self.name == "orders":
+            params["status"] = "any"
         return params
 
     def post_process(self, row: dict, context: Optional[dict] = None):
